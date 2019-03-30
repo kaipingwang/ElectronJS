@@ -34,19 +34,14 @@ function createWindow () {
   })
 
   mainWindow.on('close', (e) => {
-		if (mainWindow) {
 		  mainWindow.webContents.send('app-close');
 		  e.preventDefault();
-		}
 	});
 
 	ipcMain.on('closed', (res, arg)=> {
 		console.log(arg);
-
 		mainWindow = null;
-	  if (process.platform !== 'darwin') {
 		app.quit();
-	  }
 	});
 }
 
